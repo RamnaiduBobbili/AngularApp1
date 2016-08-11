@@ -1,0 +1,27 @@
+<div data-ng-include="'includes/header.html'"></div>
+<div class="container margin-top50">
+	<div class="page-header">
+		<h2>Add Post</h2>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-md-5 col-sm-12">
+			<form name="articlePost" novalidate>
+				<div class="form-group" data-ng-class="{'has-error' : articlePost.title.$invalid }">
+					<label>Title</label>  
+					<input type="text" name="title" data-ng-model="article.title" data-ng-minlength="5" placeholder="Title" class="form-control">
+					<span class="help-block" data-ng-show="articlePost.title.$error.minlength">Post title should be minimum 5 charecters.</span>
+				</div>
+				<div class="form-group" data-ng-class="{'has-error' : articlePost.post.$invalid }">
+					<label >Post</label>           
+					<textarea class="form-control" data-ng-model="article.post" placeholder="Post" name="post" data-ng-minlength="10"></textarea>
+					<span class="help-block" data-ng-show="articlePost.post.$error.minlength">Post should be minimum 10 charecters.</span>
+				</div>
+				<!-- <div class="form-group">
+					<label>File</label>  
+					<input name="file" data-ng-model="article.file" type="file" placeholder="placeholder" class="form-control">
+				</div> -->
+				<button class="btn  btn-primary" type="submit" data-ng-disabled="!article.title || !article.post" data-ng-click="addPost($event)">Add Post</button>
+			</form>
+		</div>
+	</div>
+</div>

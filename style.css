@@ -1,0 +1,186 @@
+body {
+    background-color: #eee;
+}
+.form-signin {
+  max-width: 400px;
+  padding: 15px;
+  margin:145px auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.navbar-dark {
+    background: #337ab7;
+}
+.navbar-brand{color:#fff;}
+.form-signin .panel-heading h3 {
+    margin: 0;
+}
+.form-signin .panel-body {
+    padding: 30px;
+}
+.form-signin .panel-body p.text-center {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+ul.nav.navbar-nav li a, .navbar-nav>li p.navbar-text {
+    color: #fff;
+}
+ul.nav.navbar-nav li a:hover, ul.nav.navbar-nav li a:focus{
+    background:transparent;
+}
+.margin-top50 {
+    margin-top: 50px;
+}
+.margin-bottom20{
+	margin-bottom:20px;
+}
+div#deleteModal .modal-dialog {
+    width: 450px;
+}
+.page-header{border-bottom:1px solid #ccc;}
+.thumbnail .caption .text-left {
+    display: inline-block;
+    width: 100%;
+    vertical-align: middle;
+}
+.thumbnail .caption .text-left span.small {
+    margin-top: 8px;
+    display: inherit;
+	color:#ccc;
+}
+.thumbnail .caption h3 {
+    margin-top: 5px;
+}
+.msgalert{
+	position:fixed;
+	right:20px;
+	top:60px;
+	width:auto;
+}
+.alert{font-weight:normal; font-size:16px;}
+.img-thumbnail{
+	vertical-align:top;
+}
+.list-group {
+    display: inline-block;
+    width: 500px;
+}
+em.hint {
+    color: #a94442;
+    font-size: 12px;
+}
+.contact{
+	position:relative;
+	z-index:5;
+}
+.contact .thumbnail+.pull-right {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    right: 24px;
+    bottom: 28px;
+}
+.contact:hover .thumbnail +.pull-right {
+    display: block;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.calculator {
+    display: inline-block;
+    width: 268px;
+    background: #428bca;
+    border-radius: 10px;
+    padding: 20px 20px 15px;
+}
+.calculator .display {
+    display: table-cell;
+    width: 268px;
+    padding: 10px;
+    background: #eee;
+    height: 50px;
+    border-radius: 5px;
+    vertical-align: middle;
+    text-align: right;
+    font-size: 18px;
+}
+.calculator .keypad {
+    display: inherit;
+	margin-top: 5px;
+}
+.calculator .keypad .col-md-12 {
+    padding: 0;
+}
+button.digits {
+    background: #eee;
+    border: 0;
+    border-radius: 5px;
+    width: 50px;
+    height: 40px;
+    font-size: 15px;
+    margin: 4px 2px;
+}
+button.operations{
+	background:#f0ad4e;
+}
+button.compute{
+	background:#5cb85c;
+}
+button.clear-btn{
+	background:#d9534f;
+}

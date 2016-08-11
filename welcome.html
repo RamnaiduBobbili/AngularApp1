@@ -1,0 +1,81 @@
+
+<div data-ng-include="'includes/header.html'"></div>
+<div class="container margin-top50">
+	<div class="page-header">
+		<h2>Welcome to Posts</h2>
+	</div>
+	<div class="row">
+		<div ng-show="articles.length!=0" class="col-sm-6 col-md-4" data-ng-repeat="article in articles">
+			<div class="thumbnail">
+			  <!-- <img src="{{article.image}}" alt="{{article.title}}" data-ng-src="article.image"> -->
+			  <div class="caption">
+				<h3>{{article.title}}</h3>
+				<p>{{article.post}}</p>
+				<div class="text-left">
+				  <span class="small"><i>Posted: {{article.date}}</i></span>
+				  <div class="pull-right">
+					  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal" data-ng-click="editPost(article.$id)">Edit</button>
+					  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-ng-click="deletePost(article.$id)">Delete</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div>
+		
+		<div ng-show="articles.length==0" class="col-sm-12 col-md-12 text-center">
+			<p><a href="#/addPost" class="btn btn-success">Add Post</a></p>
+			<p class="alert alert-danger" style="width:auto; display:inline-block;"><b>Oops!</b> No posts are available.</p>
+		</div>
+	</div>
+</div>
+<!-- Edit Post -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	<form>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editModalLabel">Edit Post</h4>
+      </div>
+      <div class="modal-body">
+		  <div class="form-group">
+		  
+			<label for="title">Title</label>
+			<input type="text" class="form-control" name="title" placeholder="Title" data-ng-model="postToUpdate.title">
+		  </div>
+		  <div class="form-group">
+			<label for="post">Post</label>
+			<textarea class="form-control" name="post" placeholder="Post" data-ng-model="postToUpdate.post"></textarea>
+		  </div>
+		  <!-- <div class="form-group">
+			<label for="attach">Attachments</label>
+			<input type="file" name="attach">
+			<p class="help-block">Example: <i>JPEG, PNG format</i></p>
+		  </div> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-ng-click="update()">Save changes</button>
+      </div>
+	 </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Post -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	<form>
+      <div class="modal-header has-error">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title help-block" id="deleteModalLabel">Do you want delete this post parminently?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-ng-click="confirmDelete()">Delete</button>
+      </div>
+	 </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<div data-ng-include="'includes/header.html'"></div>
+<div class="container margin-top50">
+	<div class="page-header">
+		<h2>Profile of <i ng-repeat="profile in profileData" style="text-transform:capitalize; color:#4cae4c;">{{profile.fname + " " + profile.lname}}</i></h2>
+	</div>
+	<div class="row">
+		<div ng-show="" class="loader">Loading...</div>
+		<div ng-show="profileData.length==0" class="col-xs-6 col-md-5 col-sm-12">
+			<form name="addPro"  novalidate>
+				<div class="form-group" data-ng-class="{'has-error' : addPro.fname.$invalid }">
+					<label class="control-label">First name</label>  
+					<input type="text" name="fname" data-ng-model="user.fname" placeholder="First name" class="form-control">
+					<span class="help-block" data-ng-show="addPro.fname.$invalid">Enter first name.</span>
+				</div>
+				<div class="form-group" data-ng-class="{'has-error' : addPro.lname.$invalid }">
+					<label class="control-label">Last name</label>  
+					<input type="text" name="lname" data-ng-model="user.lname" placeholder="Last name" class="form-control" >
+					<span class="help-block" data-ng-show="addPro.lname.$invalid">Enter Last name.</span>
+				</div>
+				<div class="form-group" data-ng-class="{'has-error' : addPro.dob.$invalid }">
+					<label class="control-label">Date of Birth</label>  
+					
+					<input type="date" name="dob" data-ng-model="user.dob" placeholder="DOB" class="form-control" >
+					<span class="help-block" data-ng-show="addPro.dob.$invalid">Enter date of birth.</span>
+				</div>
+				<div class="form-group" data-ng-class="{'has-error' : addPro.mobile.$invalid }">
+					<label class="control-label">Mobile</label>  
+					<input type="number" name="mobile" data-ng-model="user.mobile" placeholder="Mobile" class="form-control" >
+					<span class="help-block" data-ng-show="addPro.mobile.$invalid">Enter mobile number.</span>
+				</div>
+				<div class="form-group">
+					<label class="control-label">Profile Pic</label>  
+					<input type="file" name="file" id="nameImg" data-ng-model="user.file" accept="image/*" class="form-control" >
+				</div>
+				<button class="btn btn-primary " type="submit" data-ng-disabled="!user.fname || !user.lname || !user.dob || !user.mobile" data-ng-click="addProfile()">Add Profile</button>
+			</form>
+		</div>
+		<div ng-show="profileData.length!=0" class="col-xs-12 col-md-12 col-sm-12" ng-repeat="prodata in profileData">
+			
+			<img ng-show="prodata.image!=null" class="img-thumbnail" alt="{{prodata.fname}}" ng-src="{{prodata.image}}" data-holder-rendered="true" style="width: 200px; height: 200px;">
+			
+			<img ng-show="prodata.image==null" data-src="holder.js/200x200" class="img-thumbnail" alt="200x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTYwY2UyNWJhOSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1NjBjZTI1YmE5Ij48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ1LjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" data-holder-rendered="true" style="width: 200px; height: 200px;">
+			
+			
+			<div class="list-group">
+			  <a href="#" class="list-group-item">
+				<h4 class="list-group-item-heading">First Name:</h4>
+				<p class="list-group-item-text text-capitalize">{{prodata.fname}}</p>
+			  </a>
+			  <a href="#" class="list-group-item">
+				<h4 class="list-group-item-heading">Last Name:</h4>
+				<p class="list-group-item-text text-capitalize">{{prodata.lname}}</p>
+			  </a>
+			  <a href="#" class="list-group-item">
+				<h4 class="list-group-item-heading">Date of Birth:</h4>
+				<p class="list-group-item-text">{{prodata.dob | date: 'dd-MM-yyyy'}}</p>
+			  </a>
+			  <a href="#" class="list-group-item">
+				<h4 class="list-group-item-heading">Mobile Number:</h4>
+				<p class="list-group-item-text">{{prodata.mobile}}</p>
+			  </a>
+			</div>
+			
+			<button class="btn btn-success pull-right" type="button" data-toggle="modal" data-target="#editProfile" data-ng-click="editPro(prodata.$id)">Update Profile</button>
+		<div>
+	</div>
+</div>
+<div data-ng-show="showMsg" ng-class="{'alert-success' : doFade, 'alert-danger' :regError }" class="msgalert alert fade in">{{alertMsg}}</div>
+
+<!-- Edit Profile -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+		<form name="addPro"  novalidate>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="editProfileLabel">Edit Profile</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group" data-ng-class="{'has-error' : addPro.fname.$invalid }">
+					<label class="control-label">First name</label>  
+					<input type="text" name="fname" data-ng-model="profileEditData.fname" placeholder="First name" class="form-control">
+					<span class="help-block" data-ng-show="addPro.fname.$invalid">Enter first name.</span>
+				</div>
+				<div class="form-group" data-ng-class="{'has-error' : addPro.lname.$invalid }">
+					<label class="control-label">Last name</label>  
+					<input type="text" name="lname" data-ng-model="profileEditData.lname" placeholder="Last name" class="form-control" >
+					<span class="help-block" data-ng-show="addPro.lname.$invalid">Enter Last name.</span>
+				</div>
+				<div class="form-group">
+					<label class="control-label">Date of Birth</label>  
+					<input type="text" name="dob" disabled="disabled" data-ng-model="profileEditData.dob" placeholder="DOB" class="form-control" >
+					<em class="hint">Date of Birth cann't modify.!</em>
+				</div>
+				<div class="form-group" data-ng-class="{'has-error' : addPro.mobile.$invalid }">
+					<label class="control-label">Mobile</label>  
+					<input type="number" name="mobile" data-ng-model="profileEditData.mobile" placeholder="Mobile" class="form-control"  >
+					<span class="help-block" data-ng-show="addPro.mobile.$invalid">Enter mobile number.</span>
+				</div>
+				<div class="form-group">
+					<label class="control-label">Profile Pic</label>  
+					<input type="file" name="file" id="updateImg" data-ng-model="profileEditData.image"  accept="image/*" class="form-control" >
+					
+				</div>
+				<div class="form-group">
+					<img ng-src="{{profileEditData.image}}" class="img-thumbnail" style="width:200px;"/>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" data-ng-click="updateProfile()">Update Profile</button>
+			</div>
+		</form>
+    </div>
+  </div>
+</div>

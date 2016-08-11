@@ -1,0 +1,214 @@
+<div data-ng-include="'includes/header.html'"></div>
+<div class="container margin-top50">
+	<div class="page-header">
+		<h2>Address Book</h2>
+	</div>
+	<div class="row">
+		<div ng-show="addressbook.length!=0">
+			<div class="col-sm-12 col-md-12">
+				<div class="navbar navbar-default ">
+					<div class="navbar-form" role="search">
+						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addressBook" data-ng-click="addAddress()">Add Address</button>
+						<div class="form-group pull-right">
+							<input type="text"  name="search" data-ng-model="search" placeholder="Search by name" class="form-control">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-4 contact" style="cursor:pointer;" data-ng-repeat="address in addressbook | filter : search">
+				<div class="thumbnail" data-toggle="modal" data-target="#viewModalContact" data-ng-click="viewConatct(address.$id)">
+					<!-- <img src="{{article.image}}" alt="{{article.title}}" data-ng-src="article.image"> -->
+					<div class="caption">
+						<h3 class="text-capitalize">{{address.fname + " " + address.lname}}</h3>
+						<p><a href="mailto:{{address.email}}">{{address.contemail }}</a>, {{address.mobile}}</p>
+						<div class="text-left">
+							<span class="small"><i>Added on: {{address.date}}</i></span>
+						</div>
+					</div>
+				</div>	
+				<div class="pull-right">
+					<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editContactModal" data-ng-click="editContact(address.$id)">Edit</button>
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteContactModal" data-ng-click="deleteConatct(address.$id)">Delete</button>
+				</div>
+			</div>
+		</div>
+		<div ng-show="addressbook.length==0" class="col-sm-12 col-md-12 text-center">
+			<p><button type="button" class="btn btn-success" data-toggle="modal" data-target="#addressBook" data-ng-click="addAddress()">Add Address</button></p>
+			<p class="alert alert-danger" style="width:auto; display:inline-block;"><b>Oops!</b> No Contacts are available.</p>
+		</div>	
+	</div>
+</div>
+<!-- <div data-ng-show="showMsg" ng-class="{'alert-success' : doFade, 'alert-danger' :regError }" class="msgalert alert fade in">{{alertMsg}}</div> -->
+
+<!-- Add Contact -->
+<div class="modal fade" id="addressBook" tabindex="-1" role="dialog" aria-labelledby="addressBookLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+		<form name="addAddress" novalidate>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="addressBookLabel">Add Address</h4>
+			</div>
+			<div class="modal-body">
+				<div class="">
+					<div class="form-group">
+						<label>First Name</label>  
+						<input type="text" name="fname" data-ng-model="address.fname" placeholder="First name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Last Name</label>  
+						<input type="text" name="lname" data-ng-model="address.lname" placeholder="Last name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Email</label>  
+						<input type="email" name="contemail" data-ng-model="address.contemail" placeholder="Email" class="form-control">
+					</div>
+				
+					<div class="form-group">
+						<label>Mobile</label>  
+						<input type="number" name="mobile" data-ng-model="address.mobile" placeholder="Mobile" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Address</label>  
+						<input type="text" name="address" data-ng-model="address.address" placeholder="Address" class="form-control">
+					</div>
+				
+					<div class="form-group">
+						<label>PIN Code</label>  
+						<input type="number" name="pin" data-ng-model="address.pin" placeholder="PIN Code" class="form-control">
+					</div>
+				
+				
+					<div class="form-group">
+						<label>City</label>  
+						<input type="text" name="city" data-ng-model="address.city" placeholder="City" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>State</label>  
+						<input type="text" name="state" data-ng-model="address.state" placeholder="State" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Country</label>  
+						<input type="text" name="country" data-ng-model="address.country" placeholder="Country" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button class="btn  btn-primary" type="submit" data-ng-disabled="!address.fname || !address.lname || !address.contemail || !address.mobile || !address.address || !address.pin || !address.city || !address.state || !address.country" data-ng-click="saveAddress()">Save Contact</button>
+			</div>
+		</form>
+	</div>
+  </div>
+</div>
+
+<!-- Edit Contact -->
+<div class="modal fade" id="editContactModal" tabindex="-1" role="dialog" aria-labelledby="editAddressBookLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+		<form name="editAddressBook" novalidate>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="editAddressBookLabel">Edit Address</h4>
+			</div>
+			<div class="modal-body">
+				<div class="">
+					<div class="form-group">
+						<label>First Name</label>  
+						<input type="text" name="fname" data-ng-model="editAddress.fname" placeholder="First name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Last Name</label>  
+						<input type="text" name="lname" data-ng-model="editAddress.lname" placeholder="Last name" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Email</label>  
+						<input type="email" name="contemail" data-ng-model="editAddress.contemail" placeholder="Email" class="form-control">
+					</div>
+				
+					<div class="form-group">
+						<label>Mobile</label>  
+						<input type="number" name="mobile" data-ng-model="editAddress.mobile" placeholder="Mobile" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Address</label>  
+						<input type="text" name="address" data-ng-model="editAddress.address" placeholder="Address" class="form-control">
+					</div>
+				
+					<div class="form-group">
+						<label>PIN Code</label>  
+						<input type="number" name="pin" data-ng-model="editAddress.pin" placeholder="PIN Code" class="form-control">
+					</div>
+				
+				
+					<div class="form-group">
+						<label>City</label>  
+						<input type="text" name="city" data-ng-model="editAddress.city" placeholder="City" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>State</label>  
+						<input type="text" name="state" data-ng-model="editAddress.state" placeholder="State" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Country</label>  
+						<input type="text" name="country" data-ng-model="editAddress.country" placeholder="Country" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+				<button class="btn  btn-primary" type="submit" data-ng-disabled="!editAddress.fname || !editAddress.lname || !editAddress.contemail || !editAddress.mobile || !editAddress.address || !editAddress.pin || !editAddress.city || !editAddress.state || !editAddress.country" data-ng-click="updateAddress()">Update Contact</button>
+			</div>
+		</form>
+	</div>
+  </div>
+</div>
+
+<!-- View Contact -->
+<div class="modal fade" id="viewModalContact" tabindex="-1" role="dialog" aria-labelledby="viewContactLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+		<form name="viewAddress" novalidate>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-capitalize" id="viewContactLabel"><em>{{viewContactData.fname + " " + viewContactData.lname}} </em>Contact details</h4>
+			</div>
+			<div class="modal-body">
+				<address>
+				  <strong class="text-capitalize" >{{viewContactData.fname + " " + viewContactData.lname}}</strong><br>
+				  <a href="mailto:#">{{viewContactData.contemail}}</a>
+				</address>
+				<address class="text-capitalize">
+				  <strong>Address:</strong><br>
+				  {{viewContactData.address}}<br>
+				  {{viewContactData.city + ", " + viewContactData.state + " - " + viewContactData.pin}} <br>
+				  {{viewContactData.country}}<br>
+				  Mobile: {{viewContactData.mobile}}
+				</address>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</form>
+	</div>
+  </div>
+</div>
+
+
+<!-- Delete Contact -->
+<div class="modal fade" id="deleteContactModal" tabindex="-1" role="dialog" aria-labelledby="deleteContactModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	<form>
+      <div class="modal-header has-error">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title help-block" id="deleteContactModalLabel">Do you want delete this contact parminently?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-ng-click="confirmDeleteContact()">Delete</button>
+      </div>
+	 </form>
+    </div>
+  </div>
+</div>

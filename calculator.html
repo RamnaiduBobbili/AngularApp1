@@ -1,0 +1,39 @@
+<div data-ng-include="'includes/header.html'"></div>
+<div class="container margin-top50">
+	<div class="page-header">
+		<h2>Simple Calculator</h2>
+	</div>
+	<div class="row">
+		<div class="calculator">
+			<div class="display">
+			{{displayValue}}
+			</div>
+			<div class="keypad">
+				<div class="col-md-12">
+					<button class="digits" value="1" ng-click='digitClicked(1)'>1</button>
+					<button class="digits" value="2" ng-click='digitClicked(2)'>2</button>
+					<button class="digits" value="3" ng-click='digitClicked(3)'>3</button>
+					<button class="digits operations"  ng-click='operationClicked("+")'>+</button>
+				</div>
+				<div class="col-md-12">
+					<button class="digits" value="4" ng-click='digitClicked(4)'>4</button>
+					<button class="digits" value="5" ng-click='digitClicked(5)'>5</button>
+					<button class="digits" value="6" ng-click='digitClicked(6)'>6</button>
+					<button class="digits operations"  ng-click='operationClicked("-")'>-</button>
+				</div>
+				<div class="col-md-12">
+					<button class="digits" value="7" ng-click='digitClicked(7)'>7</button>
+					<button class="digits" value="8" ng-click='digitClicked(8)'>8</button>
+					<button class="digits" value="9" ng-click='digitClicked(9)'>9</button>
+					<button class="digits operations"  ng-click='operationClicked("*")'>*</button>
+				</div>
+				<div class="col-md-12">
+					<button class="digits clear-btn"  ng-click='clear()'>C</button>
+					<button class="digits" value="0" ng-click='digitClicked(0)'>0</button>
+					<button class="digits compute"  ng-click='compute()'>=</button>
+					<button class="digits operations"  ng-click='operationClicked("/")'>/</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

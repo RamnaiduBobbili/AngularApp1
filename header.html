@@ -1,0 +1,21 @@
+<nav class="navbar navbar-dark navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Project name</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="#/welcome">Home</a></li>
+				<li><a href="#/profile">My Profile</a></li>
+				<li><a href="#/addPost">Add Post</a></li>
+				<li><a href="#/addressBook">Address Book</a></li>
+				<li><a href="#/calculator">Calculator</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<p class="navbar-text">Welcome <b ng-show="profileData.length!=0" style="text-transform:capitalize;" ng-repeat="profile in profileData" >{{profile.fname + " " + profile.lname}}</b> <b ng-show="profileData.length==0">{{username}}</b> | <a href="#" class="navbar-link" ng-click="logout();" > Logout</a></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
